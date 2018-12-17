@@ -21,8 +21,8 @@ class DemoView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        self.createRectangle()
-        
+        self.createTriangle()
+
         // Specify the fill color and apply it to the path.
         UIColor.orange.setFill()
         path.fill()
@@ -31,11 +31,11 @@ class DemoView: UIView {
         UIColor.blue.setStroke()
         path.stroke()
     }
-    
+
     func createRectangle() {
         // MARK: - Initialize Bezier Path
         path = UIBezierPath()
-        
+
         // Add a point to start of the view - top left
         path.move(to: CGPoint(x: 0.0, y: 0.0))
         // Add line from top left -> left bottom
@@ -45,6 +45,15 @@ class DemoView: UIView {
         // Add line from bottom right -> top right
         path.addLine(to: CGPoint(x: self.frame.size.width, y: 0.0))
         // Auto close the last line
+        path.close()
+    }
+
+    func createTriangle() {
+        path = UIBezierPath()
+
+        path.move(to: CGPoint(x: self.frame.width/2, y: 0.0))
+        path.addLine(to: CGPoint(x: 0.0, y: self.frame.size.height))
+        path.addLine(to: CGPoint(x: self.frame.size.width, y: self.frame.size.height))
         path.close()
     }
 }
