@@ -14,6 +14,7 @@ class DemoView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .white
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -21,8 +22,17 @@ class DemoView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        self.createTriangle()
+        //self.createRectangle()
+        //self.createTriangle()
+        
+        // MARK: -  Default Oval
+        //self.path = UIBezierPath(ovalIn: self.bounds)
 
+        // MARK: -  Circle
+        print("x: \(self.frame.size.width/2 - self.frame.size.height/2)")
+
+        self.path = UIBezierPath(ovalIn: CGRect(x: self.frame.size.width/2 - self.frame.size.height/2, y: 0.0, width: self.frame.size.height, height: self.frame.size.height))
+        
         // Specify the fill color and apply it to the path.
         UIColor.orange.setFill()
         path.fill()
