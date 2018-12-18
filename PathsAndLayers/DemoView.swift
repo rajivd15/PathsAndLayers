@@ -14,7 +14,7 @@ class DemoView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+//        self.backgroundColor = .white
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,9 +29,16 @@ class DemoView: UIView {
         //self.path = UIBezierPath(ovalIn: self.bounds)
 
         // MARK: -  Circle
-        print("x: \(self.frame.size.width/2 - self.frame.size.height/2)")
-
-        self.path = UIBezierPath(ovalIn: CGRect(x: self.frame.size.width/2 - self.frame.size.height/2, y: 0.0, width: self.frame.size.height, height: self.frame.size.height))
+        //self.path = UIBezierPath(ovalIn: CGRect(x: self.frame.size.width/2 - self.frame.size.height/2, y: 0.0, width: self.frame.size.height, height: self.frame.size.height))
+        
+        // MARK: - Rectangles with all Rounded corners
+        //path = UIBezierPath(roundedRect: self.bounds, cornerRadius: 15.0)
+        
+        // MARK: - Rectangles with specific Rounded corners
+        //path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [.topLeft, .bottomRight], cornerRadii: CGSize(width: 15.0, height: 0.0))
+        
+        // MARK: - Making Arcs
+        path = UIBezierPath(arcCenter: CGPoint(x: self.frame.size.width/2, y: self.frame.size.height/2), radius: self.frame.size.height/2, startAngle: CGFloat(90.0).degreesToRadians, endAngle: CGFloat(270.0).degreesToRadians, clockwise: true)
         
         // Specify the fill color and apply it to the path.
         UIColor.orange.setFill()
@@ -66,4 +73,9 @@ class DemoView: UIView {
         path.addLine(to: CGPoint(x: self.frame.size.width, y: self.frame.size.height))
         path.close()
     }
+}
+
+extension FloatingPoint {
+    var degreesToRadians: Self { return self * .pi / 180 }
+    var radiansToDegrees: Self { return self * 180 / .pi }
 }
